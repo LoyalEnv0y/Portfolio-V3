@@ -1,8 +1,10 @@
+import tailwindScrollbar from 'tailwind-scrollbar';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,json}",
   ],
   theme: {
     extend: {
@@ -14,7 +16,9 @@ export default {
 
         secondary: {
           100: '#FFFFFF',
-          200: '#A1A1AA'
+          200: '#A1A1AA',
+          300: '#6A6A6F',
+          400: '#525255',
         },
 
         accent: {
@@ -27,8 +31,22 @@ export default {
 
       fontFamily: {
         poppins: ["Poppins", "sans-serif"]
+      },
+
+      borderWidth: {
+        3: '3px'
+      },
+
+      borderColor: {
+        silver: '#9ca3af'
+      },
+
+      ringColor: {
+        silver: '#9ca3af'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    tailwindScrollbar
+  ],
 };

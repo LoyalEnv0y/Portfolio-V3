@@ -20,7 +20,7 @@ const variants = {
 };
 
 const Header = () => {
-	const [isNavbarOpen, setIsNavbarOpen] = useState(true);
+	const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 	const navRef = createRef<HTMLElement>();
 	useOutsideClick(navRef, setIsNavbarOpen);
 
@@ -63,6 +63,7 @@ const Header = () => {
 									exit={{ y: 20 }}
 									transition={{ duration: 0.1 }}
 									onClick={() => setIsNavbarOpen(false)}
+									className="text-primary-100"
 								>
 									CLOSE
 								</motion.p>
@@ -74,15 +75,26 @@ const Header = () => {
 						variants={variants}
 						animate={isNavbarOpen ? 'open' : 'initial'}
 						transition={{}}
-						className="absolute right-20 size-2 overflow-hidden bg-accent-100"
+						className={cn(
+							'absolute right-20 size-2 overflow-hidden bg-accent-100 text-primary-100'
+						)}
 					>
 						<AnimatePresence>
 							{isNavbarOpen && (
 								<motion.div
 									key="test-1"
-									initial={{ scale: 0.1, opacity: 0 }}
-									animate={{ scale: 1, opacity: 100 }}
-									exit={{ scale: 0.1, opacity: 0 }}
+									initial={{
+										scale: 0.1,
+										opacity: 0,
+									}}
+									animate={{
+										scale: 1,
+										opacity: 100,
+									}}
+									exit={{
+										scale: 0.1,
+										opacity: 0,
+									}}
 									className="flex size-full flex-col gap-y-2 p-10 px-5 text-xl font-medium"
 								>
 									<NavLink to={'/'}>Home</NavLink>
@@ -94,7 +106,7 @@ const Header = () => {
 									</NavLink>
 
 									<FancyButton
-										className="w-36 backdrop-blur-xl"
+										className="w-36"
 										parentClassName="ml-3 mt-3"
 									>
 										CV

@@ -1,0 +1,32 @@
+{
+	"about": [
+		{
+			"title": "Tutkum, harika web siteleri oluşturmak.",
+			"content": [
+				"Şu anda, İzmir Ekonomi Üniversitesi'nde Bilgisayar Programcılığı okuyorum ve <a href='https://mobilityint.com/' class='text-accent-100 underline-offset-2 hover:underline' target='_blank'>Mobility International</a> şirketinde fullstack yazılımcı olarak çalışıyorum. Her gün yeni teknolojiler ve endüstri standartları öğreniyorum."
+			]
+		},
+		{
+			"title": "Hedefim, senior bir Full Stack yazılım mühendisi olmak.",
+			"content": [
+				"Aynı anda okuyup çalışırken az zamanım kalıyor. Ancak, hedefime ulaşmak için elimden gelenin en iyisini yaparak yeni teknolojiler öğrenmeye ve endüstri standartlarında projeler geliştirmeye çalışıyorum."
+			]
+		},
+		{
+			"title": "Şu anda, Frontend teknolojilerinde ilerliyorum.",
+			"content": [
+				"Genellikle websitelerimi oluşturmak için React, Typescript, Tanstack, Tailwindcss ve Framer Motion kullanıyorum. Yakın gelecekte, UI tasarımında, animasyonlarda ve 3D modellemede kendimi geliştirmek istiyorum ve aynı zamanda Next.js, Astro gibi frameworkleri kullanmayı da öğrenmek istiyorum.",
+
+				"Frontend becerilerimden memnun olduğumda, Backend teknolojileri ve kavramları üzerinde kendimi geliştirmek istiyorum."
+			]
+		},
+		{
+			"title": "Şirketinizde becerilerimi ve yeteneklerimi göstermek istiyorum!",
+			"content": [
+				"Yüksek kaliteli projeler sunma geçmişine ve sürekli iyileştirme taahhüdüne sahip olarak, Junior Full Stack Mühendisi olarak ekibinize katkıda bulunmaktan heyecan duyuyorum.",
+
+				"Şirketinizin dinamik ortamında işbirliği yapmaya, öğrenmeye ve gelişmeye hazırım."
+			]
+		}
+	]
+}

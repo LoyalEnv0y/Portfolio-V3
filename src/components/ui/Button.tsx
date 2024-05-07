@@ -5,6 +5,7 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 type FancyButtonProps = {
 	offsetPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 	parentClassName?: string;
+	noRotate?: boolean;
 	className?: string;
 	children?: ReactNode;
 };
@@ -26,6 +27,7 @@ const variants = {
 export const FancyButton = ({
 	offsetPosition = 'top-right',
 	parentClassName,
+	noRotate,
 	className,
 	children,
 	...rest
@@ -71,14 +73,14 @@ export const FancyButton = ({
 			className={parentClasses}
 			{...rest}
 			whileTap={{ scale: 0.95 }}
-			whileHover={{ rotate: 5, x: 5, y: -5 }}
+			whileHover={!noRotate ? { rotate: 5, x: 5, y: -5 }  : undefined}
 			onMouseEnter={() => setIsParentHovered(true)}
 			onMouseLeave={() => setIsParentHovered(false)}
 		>
 			<motion.div
 				ref={blurContainer}
 				className={classes}
-				variants={variants}
+				variants={!noRotate ? variants : undefined}
 				animate={isParentHovered ? 'hover' : 'initial'}
 			>
 				{children}

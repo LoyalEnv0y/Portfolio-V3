@@ -1,0 +1,31 @@
+{
+	"about": [
+		{
+			"title": "My passion is building cool websites.",
+			"content": [
+				"Currently, I am studying Computer Programming at Izmir University of Economics and working as a fullstack software engineer at <a href='https://mobilityint.com/' class='text-accent-100 underline-offset-2 hover:underline' target='_blank'>Mobility International</a> I am learning new technologies and industry standards everyday."
+			]
+		},
+		{
+			"title": "Becoming a senior Full Stack engineer is my goal.",
+			"content": [
+				"Studying and working at the same time leaves me little time. However, to achieve my goal I am trying my best to learn new technologies and build industry grade projects."
+			]
+		},
+		{
+			"title": "Currently, I am advancing in Frontend technologies.",
+			"content": [
+				"Mainly I am using React, Typescript, Tanstack, Tailwindcss, and Framer Motion to build my websites. In the near future, I want to improve myself in UI design, animations and 3D modelling as well as using frameworks like Next.js and Astro.",
+
+				"When I am satisfied with my Frontend skills, I want to improve myself on Backend technologies and concepts."
+			]
+		},
+		{
+			"title": "I want to demonstrate my skills and abilities within your organization!",
+			"content": [
+				"With a track record of delivering high-quality projects and a commitment to continuous improvement, I am eager to contribute to your team as a Junior Full Stack Engineer.",
+				"I am ready to collaborate, learn, and grow within your company's dynamic environment."
+			]
+		}
+	]
+}
