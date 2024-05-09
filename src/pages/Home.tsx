@@ -8,12 +8,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 import CarouselButtons from '../components/ui/Pagination';
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiSendPlaneFill } from 'react-icons/ri';
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
 import { FaGithub, FaInstagram, FaLinkedin, FaPhoneAlt } from 'react-icons/fa';
 import MediaLinkButtons from '../components/Home/MediaLinkButtons';
 import { useCopyClipboard } from '../hooks/useCopyClipboard';
+import {
+	ConfirmDialog,
+	DialogActions,
+	DialogDescription,
+	DialogTitle,
+} from '../components/ui/Dialog';
 
 const aboutVariants = {
 	enter: (direction: number) => ({ x: direction > 0 ? 500 : -500 }),
@@ -40,6 +46,7 @@ const copyVariants = {
 };
 
 const Home = () => {
+	const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 	const { isCopied, copy } = useCopyClipboard('+905456184372');
 	const form = useRef<HTMLFormElement>(null);
 
@@ -79,15 +86,51 @@ const Home = () => {
 
 	return (
 		<main className="flex flex-col items-center gap-y-7 text-xl font-medium">
+			{isCVModalOpen && (
+				<ConfirmDialog
+					handleClose={() => setIsCVModalOpen(false)}
+					className="w-96 gap-y-4"
+				>
+					<DialogTitle>Language</DialogTitle>
+					<DialogDescription>
+						Please choose which version you want to download
+					</DialogDescription>
+
+					<DialogActions className="grid grid-cols-2">
+						<a
+							href="cvs/Cetin-Tekin-CV-TR.pdf"
+							download={'Çetin-Tekin-CV-TR'}
+						>
+							<button className="translate-all flex w-full flex-col items-center rounded-md border-3 border-slate-200 p-1 text-lg shadow-xl duration-150 active:translate-y-0.5 active:shadow-none">
+								<img src="svgs/Turkish-Flag.svg" className="w-20" />
+							</button>
+						</a>
+						<a
+							href="cvs/Cetin-Tekin-CV-ENG.pdf"
+							download={'Çetin-Tekin-CV-ENG'}
+						>
+							<button className="translate-all flex w-full flex-col items-center rounded-md border-3 border-slate-200 p-1 text-lg shadow-xl duration-150 active:translate-y-0.5 active:shadow-none">
+								<img src="svgs/UK-Flag.svg" className="w-20" />
+							</button>
+						</a>
+					</DialogActions>
+				</ConfirmDialog>
+			)}
+
 			<GridCell className="text-2xl">
 				<img src="svgs/Avatar.svg" alt="Avatar" className="w-20" />
 
-				<div className="space-y-5">
+				<div className="flex flex-col gap-y-5">
 					<p>
 						<span className="text-secondary-100">Hi, I'm Çetin.</span> I
 						am a web developer and I build cool websites like this one.
 					</p>
-					<FancyButton className="w-32" offsetPosition="top-left">
+
+					<FancyButton
+						className="w-32"
+						offsetPosition="top-left"
+						onClick={() => setIsCVModalOpen(true)}
+					>
 						CV
 					</FancyButton>
 				</div>
