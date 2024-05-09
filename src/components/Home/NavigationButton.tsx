@@ -1,7 +1,7 @@
 import { Link, ReactNode } from '@tanstack/react-router';
-import { cn } from '../utils/cn';
+import { cn } from '../../utils/cn';
 
-type HomeNavigationButtonProps = {
+type NavigationButtonProps = {
 	to: string;
 	iconURL: string;
 	children?: ReactNode;
@@ -10,14 +10,14 @@ type HomeNavigationButtonProps = {
 	stipesClassName?: string;
 };
 
-const HomeNavigationButton = ({
+const NavigationButton = ({
 	to,
 	iconURL,
 	children,
 	className,
 	iconClassName,
 	stipesClassName,
-}: HomeNavigationButtonProps) => {
+}: NavigationButtonProps) => {
 	const classes = cn(
 		'group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-md bg-accent-100 py-5',
 		className
@@ -47,4 +47,4 @@ const HomeNavigationButton = ({
 	);
 };
 
-export default HomeNavigationButton;
+export default NavigationButton;
