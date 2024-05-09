@@ -8,6 +8,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import CarouselButtons from '../components/ui/Pagination';
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiSendPlaneFill } from 'react-icons/ri';
+import { FormEvent, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import { toast } from 'sonner';
 
 const variants = {
 	enter: (direction: number) => ({ x: direction > 0 ? 500 : -500 }),
@@ -16,10 +19,33 @@ const variants = {
 };
 
 const Home = () => {
+	const form = useRef<HTMLFormElement>(null);
+
 	const { t } = useTranslation();
 	const aboutInfo = t('about', { returnObjects: true }) as TAbout[];
-
 	const { direction, page, move } = usePagination(aboutInfo);
+
+	const sendEmail = (evt: FormEvent<HTMLFormElement>) => {
+		evt.preventDefault();
+
+		if (!form.current) return;
+
+		const email = emailjs.sendForm(
+			import.meta.env.VITE_EMAILJS_SERVICE_ID,
+			import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+			form.current,
+			{ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+		);
+
+		toast.promise(email, {
+			loading: 'sending the email please wait',
+			success: (data) => {
+				console.log(data);
+				return 'successfully sent your email!';
+			},
+			error: "Couldn't sent the email. Please try again.",
+		});
+	};
 
 	return (
 		<main className="flex flex-col items-center gap-y-7 text-xl font-medium">
@@ -115,32 +141,36 @@ const Home = () => {
 					<HiOutlineMail className="text-3xl subpixel-antialiased" />
 				</p>
 
-				<div className="flex w-full flex-col items-center gap-y-4">
+				<form
+					ref={form}
+					onSubmit={sendEmail}
+					className="flex w-full flex-col items-center gap-y-4"
+				>
 					<div className="flex w-full items-center gap-x-2">
-						<label htmlFor="name" className="w-20">
+						<label htmlFor="from_name" className="w-20">
 							Name
 						</label>
 						<input
 							type="text"
 							autoComplete="name"
 							placeholder="John"
-							name="name"
-							id="name"
-							className="border-silver w-full rounded-md border-2 bg-primary-100 p-2 px-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
+							name="from_name"
+							id="from_name"
+							className="w-full rounded-md border-2 border-silver bg-primary-100 p-2 px-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
 						/>
 					</div>
 
 					<div className="flex w-full items-center gap-x-2">
-						<label htmlFor="email" className="w-20">
+						<label htmlFor="reply_to" className="w-20">
 							Email
 						</label>
 						<input
 							type="email"
 							autoComplete="email"
 							placeholder="example@domain.com"
-							name="email"
-							id="email"
-							className="border-silver w-full rounded-md border-2 bg-primary-100 p-2 px-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
+							name="reply_to"
+							id="reply_to"
+							className="w-full rounded-md border-2 border-silver bg-primary-100 p-2 px-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
 						/>
 					</div>
 
@@ -150,23 +180,18 @@ const Home = () => {
 							id="message"
 							rows={5}
 							placeholder="Leave me a message"
-							className="border-silver w-full rounded-md border-2 bg-primary-100 p-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
+							className="w-full rounded-md border-2 border-silver bg-primary-100 p-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
 						></textarea>
 					</div>
 
-					<a
-						href={`mailto:cetin200012@gmail.com?body=${'aaaaaaa'}`}
-						className="w-full"
+					<FancyButton
+						className="flex w-full items-center justify-center"
+						parentClassName="w-full"
+						noRotate
 					>
-						<FancyButton
-							className="flex w-full items-center justify-center"
-							parentClassName="w-full"
-							noRotate
-						>
-							<RiSendPlaneFill className="text-4xl" />
-						</FancyButton>
-					</a>
-				</div>
+						<RiSendPlaneFill className="text-4xl" />
+					</FancyButton>
+				</form>
 			</GridCell>
 		</main>
 	);
