@@ -30,20 +30,35 @@ const Home = () => {
 
 		if (!form.current) return;
 
+		emailjs.init({
+			publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+			blockHeadless: true,
+			limitRate: {
+				id: 'app',
+				throttle: 1000 * 10,
+			},
+		});
+
 		const email = emailjs.sendForm(
 			import.meta.env.VITE_EMAILJS_SERVICE_ID,
 			import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
 			form.current,
-			{ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+			// {
+			// 	publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+			// 	limitRate: {
+			// 		id: 'app',
+			// 		throttle: 1000 * 10,
+			// 	},
+			// }
 		);
 
 		toast.promise(email, {
-			loading: 'sending the email please wait',
-			success: (data) => {
-				console.log(data);
-				return 'successfully sent your email!';
+			loading: 'Sending the Email Please Wait',
+			success: () => 'Successfully Sent Your Email!',
+			error: (err) => {
+				console.error('err => ', err);
+				return "Couldn't sent the email. Please try again.\n" + err;
 			},
-			error: "Couldn't sent the email. Please try again.",
 		});
 	};
 
@@ -155,8 +170,9 @@ const Home = () => {
 							autoComplete="name"
 							placeholder="John"
 							name="from_name"
+							required
 							id="from_name"
-							className="w-full rounded-md border-2 border-silver bg-primary-100 p-2 px-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
+							className="w-full rounded-md border-2 border-silver bg-primary-100 p-2 px-4 text-secondary-100 caret-accent-100 placeholder:text-secondary-400 focus:border-accent-100 focus:outline-none"
 						/>
 					</div>
 
@@ -169,8 +185,9 @@ const Home = () => {
 							autoComplete="email"
 							placeholder="example@domain.com"
 							name="reply_to"
+							required
 							id="reply_to"
-							className="w-full rounded-md border-2 border-silver bg-primary-100 p-2 px-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
+							className="w-full rounded-md border-2 border-silver bg-primary-100 p-2 px-4 text-secondary-100 caret-accent-100 placeholder:text-secondary-400 focus:border-accent-100 focus:outline-none"
 						/>
 					</div>
 
@@ -179,8 +196,9 @@ const Home = () => {
 							name="message"
 							id="message"
 							rows={5}
+							required
 							placeholder="Leave me a message"
-							className="w-full rounded-md border-2 border-silver bg-primary-100 p-4 caret-accent-100 focus:border-accent-100 focus:outline-none"
+							className="w-full rounded-md border-2 border-silver bg-primary-100 p-4 text-secondary-100 caret-accent-100 placeholder:text-secondary-400 focus:border-accent-100 focus:outline-none"
 						></textarea>
 					</div>
 
