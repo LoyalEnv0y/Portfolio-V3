@@ -22,9 +22,9 @@ import {
 } from '../components/ui/Dialog';
 
 const aboutVariants = {
-	enter: (direction: number) => ({ x: direction > 0 ? 500 : -500 }),
+	enter: (direction: number) => ({ x: direction > 0 ? 1000 : -1000 }),
 	center: { x: 0 },
-	exit: (direction: number) => ({ x: direction > 0 ? -500 : 500 }),
+	exit: (direction: number) => ({ x: direction > 0 ? -1000 : 1000 }),
 };
 
 const copyVariants = {
@@ -85,7 +85,7 @@ const Home = () => {
 	};
 
 	return (
-		<main className="flex flex-col items-center gap-y-7 text-xl font-medium">
+		<main className="xs:text-xl 2xl:w-xl grid items-center gap-5 font-medium sm:grid-cols-5">
 			{isCVModalOpen && (
 				<ConfirmDialog
 					handleClose={() => setIsCVModalOpen(false)}
@@ -117,10 +117,9 @@ const Home = () => {
 				</ConfirmDialog>
 			)}
 
-			<GridCell className="text-2xl">
-				<img src="svgs/Avatar.svg" alt="Avatar" className="w-20" />
-
-				<div className="flex flex-col gap-y-5">
+			{/* Title */}
+			<GridCell className="h-full gap-4 text-2xl sm:col-span-3 2xl:flex-row 2xl:text-3xl">
+				<div className="flex flex-col gap-y-4">
 					<p>
 						<span className="text-secondary-100">Hi, I'm Çetin.</span> I
 						am a web developer and I build cool websites like this one.
@@ -134,11 +133,17 @@ const Home = () => {
 						CV
 					</FancyButton>
 				</div>
+				<img
+					src="images/PP2.jpg"
+					alt="Avatar"
+					className="order-first size-28 rounded-full x:order-none 2xl:size-40"
+				/>
 			</GridCell>
 
+			{/* Navigation */}
 			<GridCell
 				clean
-				className="gap-y-3 text-2xl font-bold uppercase tracking-widest text-secondary-100"
+				className="xs:text-2xl h-full gap-3 text-xl font-bold uppercase tracking-widest text-secondary-100 sm:col-span-2 sm:justify-between lg:grid lg:grid-cols-2 lg:grid-rows-2"
 			>
 				<NavigationButton
 					to="/projects"
@@ -174,7 +179,8 @@ const Home = () => {
 				</NavigationButton>
 			</GridCell>
 
-			<GridCell className="space-y-8 overflow-hidden">
+			{/* About */}
+			<GridCell className="justify-between gap-y-5 overflow-hidden sm:col-span-5 2xl:h-60 2xl:py-5">
 				<AnimatePresence mode="wait" custom={direction} initial={false}>
 					<motion.div
 						key={page}
@@ -191,7 +197,7 @@ const Home = () => {
 						<span className="text-secondary-100">
 							{aboutInfo[page].title}
 						</span>
-						<div className="flex flex-col gap-y-3">
+						<div className="flex flex-col gap-y-3 scrollbar-thin scrollbar-track-primary-200 scrollbar-thumb-accent-100 2xl:h-28 2xl:overflow-y-auto">
 							{aboutInfo[page].content.map((about, i) => (
 								<p
 									key={i}
@@ -211,18 +217,19 @@ const Home = () => {
 				/>
 			</GridCell>
 
-			<GridCell className="items-center gap-y-5 text-base font-normal">
-				<p className="flex items-center gap-x-2 text-xl font-medium text-secondary-100">
+			{/* Contact */}
+			<GridCell className="h-full items-center gap-3 text-base font-normal sm:col-span-4 sm:col-start-2">
+				<p className="flex items-center gap-x-2 self-start text-2xl font-medium text-secondary-100">
 					Contact Me
-					<HiOutlineMail className="text-3xl subpixel-antialiased" />
+					<HiOutlineMail className="text-4xl subpixel-antialiased" />
 				</p>
 
 				<form
 					ref={form}
 					onSubmit={sendEmail}
-					className="flex w-full flex-col items-center gap-y-4"
+					className="grid w-full grid-flow-col grid-cols-6 grid-rows-2 items-center gap-4"
 				>
-					<div className="flex w-full items-center gap-x-2">
+					<div className="col-span-2 flex w-full items-center gap-x-1">
 						<label htmlFor="from_name" className="w-20">
 							Name
 						</label>
@@ -237,7 +244,7 @@ const Home = () => {
 						/>
 					</div>
 
-					<div className="flex w-full items-center gap-x-2">
+					<div className="col-span-2 flex w-full items-center gap-x-1">
 						<label htmlFor="reply_to" className="w-20">
 							Email
 						</label>
@@ -252,28 +259,30 @@ const Home = () => {
 						/>
 					</div>
 
-					<div className="w-full items-center gap-x-2">
+					<div className="col-span-4 row-span-2 flex h-full w-full items-end gap-x-2">
 						<textarea
 							name="message"
 							id="message"
-							rows={5}
 							required
 							placeholder="Leave me a message"
-							className="w-full rounded-md border-2 border-silver bg-primary-100 p-4 text-secondary-100 caret-accent-100 placeholder:text-secondary-400 focus:border-accent-100 focus:outline-none"
+							className="h-full w-full rounded-md border-2 border-silver bg-primary-100 p-4 text-secondary-100 caret-accent-100 placeholder:text-secondary-400 focus:border-accent-100 focus:outline-none"
 						></textarea>
-					</div>
 
-					<FancyButton
-						className="flex w-full items-center justify-center"
-						parentClassName="w-full"
-						noRotate
-					>
-						<RiSendPlaneFill className="text-4xl" />
-					</FancyButton>
+						<FancyButton
+							className="flex h-24 w-12 items-center justify-center p-2"
+							noRotate
+						>
+							<RiSendPlaneFill className="text-5xl" />
+						</FancyButton>
+					</div>
 				</form>
 			</GridCell>
 
-			<GridCell clean className="grid grid-cols-4 gap-5">
+			{/* Social Media */}
+			<GridCell
+				clean
+				className="row-span-1 sm:row-start-3 grid h-full grid-cols-4 gap-3 sm:grid-cols-2 content-center"
+			>
 				<MediaLinkButtons
 					to="https://github.com/LoyalEnv0y"
 					className="bg-white text-black"

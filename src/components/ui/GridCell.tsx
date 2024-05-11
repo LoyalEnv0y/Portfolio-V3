@@ -9,8 +9,8 @@ type GridCellProps = {
 
 const GridCell = ({ clean, className, children }: GridCellProps) => {
 	const classes = cn(
-		'bg-primary-100 border-2 border-silver flex flex-col w-full rounded-xl p-5',
-		{ 'bg-primary-200 border-none p-0': clean },
+		'bg-primary-100 border-2 border-silver flex flex-col w-full rounded-xl p-5 2xl:p-10',
+		{ 'bg-primary-200 border-none p-0 2xl:p-0': clean },
 		className
 	);
 	return <section className={classes}>{children}</section>;

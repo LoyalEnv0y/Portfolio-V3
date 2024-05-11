@@ -43,7 +43,20 @@ export default {
 
       ringColor: {
         silver: '#9ca3af'
+      },
+
+      width: {
+        xl: '1120px'
       }
+    },
+
+    screens: {
+      xs: '540px',
+      sm: '640px',
+      md: '768px',
+      lg: '940px',
+      xl: '1024px',
+      '2xl': '1280px'
     },
   },
   plugins: [

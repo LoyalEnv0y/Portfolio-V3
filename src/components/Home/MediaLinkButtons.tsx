@@ -18,7 +18,7 @@ const MediaLinkButtons = ({
 	className,
 }: MediaLinkButtonsProps) => {
 	const classes = cn(
-		'flex aspect-square cursor-pointer items-center justify-center rounded-lg bg-black text-6xl text-white',
+		'flex aspect-square cursor-pointer items-center justify-center rounded-lg bg-black text-4xl text-white xs:text-6xl sm:text-4xl lg:text-6xl',
 		className
 	);
 	return (

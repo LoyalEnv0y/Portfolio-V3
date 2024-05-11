@@ -17,7 +17,7 @@ import { Toaster } from 'sonner';
 
 export const Route = createRootRoute({
 	component: () => (
-		<div className="flex h-screen flex-col items-center gap-y-5 overflow-x-hidden bg-primary-200 p-5 font-poppins tracking-wider text-secondary-200 scrollbar-thin scrollbar-track-primary-200 scrollbar-thumb-accent-100 hover:scrollbar-thumb-sky-500">
+		<div className="flex h-screen flex-col items-center gap-y-5 overflow-x-hidden bg-primary-200 p-5 font-poppins tracking-wider text-secondary-200 scrollbar-thin scrollbar-track-primary-200 scrollbar-thumb-accent-100">
 			<Header />
 			<Outlet />
 			<Toaster
